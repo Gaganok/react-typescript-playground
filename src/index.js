@@ -1,17 +1,34 @@
+//React
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+//Components
+import Header from './Components/Header/Header';
+//Pages
+import LoginPage from './Page/LoginPage/Index';
+import MainPage from './Page/MainPage/Index.jsx';
+import UserListingPage from './Page/UserListingPage/Index';
+import PhotoPage from './Page/PhotoPage/Index';
+import RainPage from './Page/RainPage/Index';
+import EffectPage from './Page/EffectPage/Index'
+//Style
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ResponsiveDrawer from './Components/ResponsiveDrawer';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <div>
+      <ResponsiveDrawer>
+        <Switch>
+          <Route path = '/home' component={MainPage}/>
+          <Route path='/login' component={LoginPage}/>
+          <Route path='/listing/user' component={UserListingPage}/>
+          <Route path='/photos' component={PhotoPage}/>
+          <Route path='/rain' component={RainPage}/>
+          <Route path='/effect' component={EffectPage}/>
+        </Switch>
+      </ResponsiveDrawer>
+    </div>
+  </Router>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

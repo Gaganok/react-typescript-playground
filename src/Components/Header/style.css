@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.wrapper{
+  max-width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-weight: 800 bold;
+  line-height: 42px;
+  color: #ffffff;
+}
+
+.header__items{
+display: inline; 
+padding: 0 25px;
+      
+}
+
+.header__link{
+font-weight: 400;
+font-size: 18px;
+line-height: 27px;
+color: #ffffff;
+text-decoration: underline;
+
+}
