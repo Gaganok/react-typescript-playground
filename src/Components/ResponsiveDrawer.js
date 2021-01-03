@@ -86,6 +86,11 @@ const mainMenu = [
     page: "Effect",
     icon : <SettingsSharpIcon/>,
     url : "/effect"
+  },
+  {
+    page: "3D World",
+    icon : <SettingsSharpIcon/>,
+    url : "/three"
   }
 ]
 

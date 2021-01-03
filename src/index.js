@@ -11,6 +11,7 @@ import UserListingPage from './Page/UserListingPage/Index';
 import PhotoPage from './Page/PhotoPage/Index';
 import RainPage from './Page/RainPage/Index';
 import EffectPage from './Page/EffectPage/Index'
+import ThreePage from './Page/ThreePage/Index'
 //Style
 import './index.css';
 import ResponsiveDrawer from './Components/ResponsiveDrawer';
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Route path='/photos' component={PhotoPage}/>
           <Route path='/rain' component={RainPage}/>
           <Route path='/effect' component={EffectPage}/>
+          <Route path='/three' component={ThreePage}/>
         </Switch>
       </ResponsiveDrawer>
     </div>

@@ -8,7 +8,7 @@ import MenuForNeonCircle, {Params} from '../../Components/MenuForNeonCircle';
 import PlaygroundComponent from './PlaygroundComponent';
 import playgroundFunc from './Playground/AutoBattlePlayground'
 
-playgroundFunc()
+// playgroundFunc()
 
 export default () => {
     let a: Array<CardInput> = [
@@ -28,7 +28,6 @@ export default () => {
         }
     ];
 
-
     let [maxCircle, setMax] = useState(20)
     let [options, setOptions] = useState(new Options(500, 500, maxCircle, 10, 200, "black"));
     const neonParams: Params = {options, setOptions}
@@ -38,36 +37,11 @@ export default () => {
             <PlaygroundComponent></PlaygroundComponent>       
             <CardComponentGroup items={a}/>
 
-            <div className="menu">
+            {/* <div className="menu">
                 <NeonLoading {...{options}}/>
                 <MenuForNeonCircle {...neonParams} />
-            </div>
+            </div> */}
             
-            {/*
-                Over here I WANT YOU TO add a setting menu React component
-                Setting to include: 
-                    readonly width: number,
-                    readonly height: number,
-                    readonly maxCircles: number, // Amount of Circles
-                    readonly maxCircleRadius: number, // Radius of small Circles
-                    readonly circleLayoutRadius: number, // Radius of abstact circle to locate out small circles
-                    readonly backgroundColor: string, // Цвет фона                                              
-                    
-                    
-                    colorSchema?: ColorSchema //  Color Schema -> consists of 3 main colors [red, green. blue]  0..255
-                    
-                    0.................*........................255
-                    0.................*........................255
-                    0.................*........................255
-
-                    deltaRed [10]
-                    deltaGreen [10]
-                    deltaBlue [10]
-
-                    and 3 delta colors -> [deltaRed, deltaGreen, deltaBlue]. 
-                    Delta colors will be used to change related main colors with delta value 
-
-            */} 
         </Container>
     );
 }
