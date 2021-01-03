@@ -6,6 +6,9 @@ import './Effect.css';
 import NeonLoading, {ColorSchema, Options} from './EffectComponent/NeonLoader/NeonLoading';
 import MenuForNeonCircle, {Params} from '../../Components/MenuForNeonCircle';
 import PlaygroundComponent from './PlaygroundComponent';
+import playgroundFunc from './Playground/AutoBattlePlayground'
+
+playgroundFunc()
 
 export default () => {
     let a: Array<CardInput> = [
@@ -24,6 +27,7 @@ export default () => {
             text: "2"
         }
     ];
+
 
     let [maxCircle, setMax] = useState(20)
     let [options, setOptions] = useState(new Options(500, 500, maxCircle, 10, 200, "black"));
