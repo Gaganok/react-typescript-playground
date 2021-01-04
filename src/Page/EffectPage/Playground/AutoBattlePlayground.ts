@@ -1,8 +1,11 @@
+import MerlinImg from '../../../Resources/Image/merlin.png';
+import PotterImg from '../../../Resources/Image/potter.png';
+import VolandemortImg from '../../../Resources/Image/volandemort.png';
+import ArthurImg from '../../../Resources/Image/arthur.png';
 
-
-abstract class Person{
+export abstract class Person{
     public alive: boolean = true;
-    constructor(public name: string, public type: string, public health: number, public attack: number, public weapon: string){}
+    constructor(public name: string, public type: string, public health: number, public attack: number, public weapon: string, public image: string){}
 
     public takeDamage = (damage: number) => {
         this.health -= damage;
@@ -11,7 +14,6 @@ abstract class Person{
             this.alive = false;
             console.log(`${this.name} has died`)
         }
-
         return this;
     }
 
@@ -23,7 +25,7 @@ abstract class Person{
     }
 }
 
-class Squad<T extends Person>{
+export class Squad<T extends Person>{
     public squad: Array<T>
     public maxPerson: number = 6;
 
@@ -49,11 +51,11 @@ class Squad<T extends Person>{
     }
 }
 
-class BattleGround{
+export class BattleGround{
     constructor(public background: string, public allySquad: Squad<Ally>, public enemySquad: Squad<Enemy>){}
 }
 
-class BattleRunner{
+export class BattleRunner{
     static runBattle(battleGround: BattleGround){
         let battle = true;
         while(battle){
@@ -68,7 +70,7 @@ class BattleRunner{
                 }
             })
 
-            if(battleGround.enemySquad.squad.length == 0){
+            if(battleGround.enemySquad.squad.length === 0){
                 battle = false;
                 console.log("Ally Wins, Flawless Victory!!!")
                 break;
@@ -85,7 +87,7 @@ class BattleRunner{
                 }
             })
 
-            if(battleGround.allySquad.squad.length == 0){
+            if(battleGround.allySquad.squad.length === 0){
                 battle = false;
                 console.log("Enemy Wins, Flawless Victory!!!")
                 break;
@@ -96,61 +98,64 @@ class BattleRunner{
 
 export default function playground(){
     let enemySquad = new Squad<Enemy>([new Volandemort()])
-    let allySquad = new Squad<Ally>([new Potter()])
+    let allySquad = new Squad<Ally>([
+        
+        new Potter()])
 
     let battleGround: BattleGround = new BattleGround("fire", allySquad, enemySquad)
 
     BattleRunner.runBattle(battleGround);
 }
 
-abstract class Enemy extends Person{
+export abstract class Enemy extends Person{
     public number: number = 20;
 }
 
-abstract class Ally extends Person{
+export abstract class Ally extends Person{
     public age: number = 20;
     allyRoar(){
         console.log("Aarghh!!!")
     }
 }
 
-abstract class Wizard extends Ally{
-    constructor(name: string, health: number, attack: number){
-        super(name, "Wizard" , health, attack, "Stuff");
+export abstract class Wizard extends Ally{
+    constructor(name: string, health: number, attack: number, image: string){
+        super(name, "Wizard" , health, attack, "Stuff", image);
     }
 }
 
-abstract class Knight extends Ally{
-    constructor(name: string, health: number, attack: number){
-        super(name, "Knight" , health, attack, "Sword");
+export abstract class Knight extends Ally{
+    constructor(name: string, health: number, attack: number, image: string){
+        super(name, "Knight" , health, attack, "Sword", image);
     }
 }
 
-abstract class  Paladin extends Enemy{
-    constructor(name: string, health: number, attack: number){
-        super(name, "Paladin" , health, attack, "Mace");
+export abstract class  Paladin extends Enemy{
+    constructor(name: string, health: number, attack: number, image: string){
+        super(name, "Paladin" , health, attack, "Mace", image);
     }
 }
 
-class Merlin extends Wizard{
+export class Merlin extends Wizard{
     constructor(){
-        super("Merlin", 100, 20);
+        super("Merlin", 100, 20, MerlinImg);
     }
 }
 
-class Potter extends Wizard{
+export class Potter extends Wizard{
     constructor(){
-        super("Potter", 100, 20);
+        super("Potter", 100, 20, PotterImg);
     }
 }
 
-class Arthur extends Knight{
+export class Arthur extends Knight{
     constructor(){
-        super("Arthur", 100, 20);
+        super("Arthur", 100, 20, ArthurImg);
     }
 }
-class Volandemort extends Paladin{
+
+export class Volandemort extends Paladin{
     constructor(){
-        super("Volandemort", 100, 30);
+        super("Volandemort", 100, 30, VolandemortImg);
     }
 }

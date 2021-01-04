@@ -6,7 +6,9 @@ import './Effect.css';
 import NeonLoading, {ColorSchema, Options} from './EffectComponent/NeonLoader/NeonLoading';
 import MenuForNeonCircle, {Params} from '../../Components/MenuForNeonCircle';
 import PlaygroundComponent from './PlaygroundComponent';
-import playgroundFunc from './Playground/AutoBattlePlayground'
+import Battle from '../EffectPage/Battle'
+import {Merlin, Potter, Arthur, Volandemort, Person, Ally, Enemy, BattleGround, Squad} from './Playground/AutoBattlePlayground'
+
 
 // playgroundFunc()
 
@@ -32,15 +34,20 @@ export default () => {
     let [options, setOptions] = useState(new Options(500, 500, maxCircle, 10, 200, "black"));
     const neonParams: Params = {options, setOptions}
 
+    const allySquad: Squad<Ally> = new Squad<Ally>([new Potter(), new Merlin(), new Arthur()])
+    const enemySquad: Squad<Enemy> = new Squad<Enemy>([new Volandemort()])
+    const battleGround: BattleGround = new BattleGround("", allySquad, enemySquad);
+    
     return(
         <Container>
+            <Battle battleGround={battleGround}/>
             <PlaygroundComponent></PlaygroundComponent>       
             <CardComponentGroup items={a}/>
 
-            {/* <div className="menu">
+            <div className="menu">
                 <NeonLoading {...{options}}/>
                 <MenuForNeonCircle {...neonParams} />
-            </div> */}
+            </div>
             
         </Container>
     );

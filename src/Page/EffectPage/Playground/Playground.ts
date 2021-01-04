@@ -1,19 +1,7 @@
 import FalconImg from '../img/falcon.png';
 import DoveImg from '../img/dove.png';
 import SparrowImg from '../img/sparrow.png';
-function Hunting(){
-    // let falcon: Falcon = new Falcon ("Falcon")
-    // let dove: Dove = new Dove ("Dove")
-    // let sparrow: Sparrow = new Sparrow ("Sparrow")
-    // let birds: Array <Bird> = [falcon, dove, sparrow]
-    // let hunter: NoobHunter = new NoobHunter("Marley")
-    // let hunter2: ExperiencedHunter = new ExperiencedHunter ("Bob")
-    // for(let i=0; i < birds.length; i++){
-    //     hunter.hunterBirds(birds[i])
-    //     hunter2.hunterBirds(birds[i])
-    // }
-    // hunter.summary.display()
-}
+function Hunting(){}
 
 export abstract class Bird{
     public visible: boolean = true;

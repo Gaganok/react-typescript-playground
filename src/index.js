@@ -2,8 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-//Components
-import Header from './Components/Header/Header';
 //Pages
 import LoginPage from './Page/LoginPage/Index';
 import MainPage from './Page/MainPage/Index.jsx';
