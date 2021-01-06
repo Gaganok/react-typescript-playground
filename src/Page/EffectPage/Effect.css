@@ -64,40 +64,6 @@
     transform: translateY(-60px);
 }
 
-.menu{
-    display: flex;
-    margin-top: 10px;
-}
-
-.menuDiv{
-    width: 57%;
-    min-height: 300px;
-    background-color: brown;
-    margin-left: 35px;
-}
-
-.menuList{
-    display: flex;
-    flex-direction: column;
-}
-
-.form{
-    margin: 20px 0px 20px 30px;
-}
-
-.input{
-    margin-left: 20px;
-    margin-right: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-}
-
-.buttonForm{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    width: 0 auto;
-}
-
 .birdContainer{
     display: flex;
     padding: 30px 10px;
@@ -128,3 +94,23 @@
     padding: 0 40px 20px 0;
 }
 
+.BattleGround{
+    display: flex;
+    margin-bottom: 80px;
+}
+
+.BattleAlly{
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.BattleEnemy{
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
