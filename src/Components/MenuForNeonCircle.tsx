@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NeonLoading, {ColorSchema, Options} from '../Page/EffectPage/EffectComponent/NeonLoader/NeonLoading';
-import './NeonMenu.css';
 import './NeonMenu.scss';
+import Slider from "./Slider";
 
 export type Params = {
     options: Options,
@@ -22,12 +22,9 @@ export default ({options, setOptions}: Params) => {
         // setOptions(options);
     }
 
-    function maxCircleChange(){
-        console.log("aaaa")
-        options.maxCircles = Number.parseInt((document.getElementById("maxCircles") as HTMLInputElement).value);
-        // setOptions(options.maxCircles);
+    function maxCircleChange(maxCircle: number){
+        options.maxCircles = maxCircle;
         setOptions({...options, maxCircles: options.maxCircles});
-        console.log("just called setOptions")
     }
 
     function maxCircleRadiusChange(){
@@ -68,7 +65,7 @@ export default ({options, setOptions}: Params) => {
                 </div>
 
                 <div className="group">      
-                    <input className="Input" placeholder={"Max Circle: "} type="text" id="maxCircles" onChange={ e => {maxCircleChange()}}/>   
+                    <input className="Input" placeholder={"Max Circle: "} type="text" id="maxCircles" onChange={ e => {maxCircleChange(Number.parseInt(e.target.value))}}/>   
                     <span className="bar"></span>
                 </div>
 
@@ -88,10 +85,9 @@ export default ({options, setOptions}: Params) => {
                 </div>
             </div>
             <div className="SliderRange">
-                <div className="RangeDiv">
-                    <input className="Range" type="range" id="myRange" />
-                    <input className="Range" type="range" id="myRange" />
-                </div>
+                <Slider 
+                    hookMethod={maxCircleChange}
+                />
             </div>
         </div>
     )
