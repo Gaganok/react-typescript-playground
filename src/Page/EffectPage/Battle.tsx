@@ -1,27 +1,52 @@
 import React, { useEffect, useState} from 'react';
-import './Effect.css';
-import {BattleGround, Ally, Enemy} from './Playground/AutoBattlePlayground'
+import './Effect.scss';
+import {BattleGround, Ally, Enemy, BattleRunner, Person, ReactBattleRunner} from './Playground/AutoBattlePlayground'
+import {Button} from '@material-ui/core';
+import { isJsxElement } from 'typescript';
 
-type BattleInput = {
+interface BattleInput{
     battleGround: BattleGround;
 }
 
+type BattleElementType = {[key: string]: JSX.Element}
+
 export default ({battleGround}: BattleInput) => {
 
-    let toShow: Array<JSX.Element> = []
+    const allyMap: Map<Ally, React.RefObject<HTMLImageElement>> = new Map;
+    battleGround.allySquad.squad.forEach(character => allyMap.set(character, React.useRef<HTMLImageElement>(null)));
 
-    let squad1: Array<Ally> = battleGround.allySquad.squad;
-    let squad2: Array<Enemy> = battleGround.enemySquad.squad;
+    const enemyMap: Map<Enemy, React.RefObject<HTMLImageElement>> = new Map;
+    battleGround.enemySquad.squad.forEach(character => enemyMap.set(character, React.useRef<HTMLImageElement>(null)));
+
+    const allyJSXElements: Array<JSX.Element> = []
+    for (let [key, value] of allyMap) {
+        allyJSXElements.push(<img src={key.image} ref={value} alt="Some Ally Hero" height="200px" width= "200px"/>)
+    }
+
+    const enemyJSXElements: Array<JSX.Element> = []
+    for (let [key, value] of enemyMap) {
+        enemyJSXElements.push(<img src={key.image} ref={value} alt="Some Enemy Hero" height="200px" width= "200px"/>)
+    }
+
 
     return(
         <div className="BattleGround">
             <div className="BattleAlly">
-                {battleGround.allySquad.squad.map(ally => <img src={ally.image} alt="Some Ally Hero" height="300px" width= "300px"/>)}
+                {allyJSXElements}
             </div>
+
             <div className="BattleEnemy">
-                {battleGround.enemySquad.squad.map(Enemy => <img src={Enemy.image} alt="Some Enemy Here" height="300px" width= "300px"/>)}
+                {enemyJSXElements}
             </div>
-            
+
+            <Button 
+                className="BattleButton" 
+                variant="contained" 
+                color="primary"
+                onClick={() => ReactBattleRunner.runBattle({allyMap, enemyMap})}
+            >
+                Start Games
+            </Button>
         </div>
     );
 }

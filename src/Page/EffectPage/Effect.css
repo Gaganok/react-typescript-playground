@@ -93,24 +93,3 @@
     align-self: flex-end;
     padding: 0 40px 20px 0;
 }
-
-.BattleGround{
-    display: flex;
-    margin-bottom: 80px;
-}
-
-.BattleAlly{
-    background-color: blueviolet;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-}
-
-.BattleEnemy{
-    background-color: cadetblue;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-}

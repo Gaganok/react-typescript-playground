@@ -5,6 +5,7 @@ import ArthurImg from '../../../Resources/Image/arthur.png';
 
 export abstract class Person{
     public alive: boolean = true;
+    public dead: boolean = false;
     constructor(public name: string, public type: string, public health: number, public attack: number, public weapon: string, public image: string){}
 
     public takeDamage = (damage: number) => {
@@ -12,6 +13,7 @@ export abstract class Person{
         console.log(`${this.name} receives ${damage}`)
         if(this.health <= 0){
             this.alive = false;
+            this.dead = true;
             console.log(`${this.name} has died`)
         }
         return this;
@@ -94,6 +96,65 @@ export class BattleRunner{
             }
         }
     }
+}
+
+const selectDefender = (defenders: Array<any>) => {
+    for(let defender of defenders){
+        if(defender[0].alive){
+            return defender
+        }
+    }
+}
+
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+export class ReactBattleRunner{
+
+    static async runBattle(battleGround: ReactBattleGround){
+        const sides: Array<MapAlias> = [battleGround.allyMap, battleGround.enemyMap];
+
+        const attackCharacterColor: string = "blue"
+        const defenceCharacterColor: string = "red"
+        const neutralCharacterColor: string = ""
+
+        let sidePicker = 0; // 0 - ally turn, 1 - eneym turn
+
+        while(true){
+            let attackSide: MapAlias = sides[sidePicker]
+            sidePicker = 1 - sidePicker
+            let defendSide: MapAlias = sides[sidePicker]
+
+            const defendSideKeyArray = Array.from(defendSide.entries());
+            let defender = selectDefender(defendSideKeyArray)
+            for(let attacker of attackSide){
+                if(defender){
+                    defender[1].current!.style.backgroundColor = defenceCharacterColor;
+                    attacker[1].current!.style.backgroundColor = attackCharacterColor;
+                    
+                    await delay(500)
+
+                    attacker[1].current!.style.backgroundColor = neutralCharacterColor;
+                    defender[1].current!.style.backgroundColor = neutralCharacterColor;
+
+                    defender[0].takeDamage(attacker[0].attack);
+                    if(defender[0].dead){
+                        defender[1].current!.style.visibility = "hidden";
+                        defender = selectDefender(defendSideKeyArray)
+                    }
+                } else {
+                    console.log("Victory")
+                    return;
+                }
+            }
+        }
+    }
+}
+
+type MapAlias = Map<Person, React.RefObject<HTMLImageElement | null>>
+
+export interface ReactBattleGround{
+    allyMap: MapAlias,
+    enemyMap: MapAlias,
 }
 
 export default function playground(){
