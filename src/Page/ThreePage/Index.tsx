@@ -2,6 +2,7 @@ import { Container} from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import * as THREE from 'three'
 import { Object3D } from 'three';
+import * as dat from 'dat.gui';
 import './style.scss';
 
 
@@ -72,29 +73,34 @@ export default () => {
     function animate() {
         requestAnimationFrame( animate );
         renderer.render( scene, camera );
-
-        plane.rotateX(0.05)
-        console.log(plane.rotation.x)
     }
     // animate()
 
-    renderer.render( scene, camera );
+    // renderer.render( scene, camera );
 
     const ref: React.RefObject<HTMLDivElement> = React.createRef()
 
     useEffect(() => {
+
+        let gui = new dat.GUI();
+        gui.add(camera.position, 'x').min(0).max(1500).step(1);
+        gui.add(camera.position, 'y').min(0).max(1500).step(1);
+        gui.add(camera.position, 'z').min(0).max(1500).step(1);
+        gui.domElement.id = "datgui"
+
         ref.current?.appendChild(renderer.domElement);
+        ref.current?.focus({preventScroll: true});
+        
+
         renderer.domElement.addEventListener('mousemove', onDocumentMouseMove, false );
+
+        animate()
     })
 
     return(
         <Container>
             <div ref={ref}/>
-            <div className="scss-test">
-                <div>
-                    
-                </div>
-            </div>
+            <div id="datgui" tabIndex={10}/>
         </Container>
     );
 }
