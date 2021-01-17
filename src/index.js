@@ -9,7 +9,7 @@ import UserListingPage from './Page/UserListingPage/Index';
 import PhotoPage from './Page/PhotoPage/Index';
 import RainPage from './Page/RainPage/Index';
 import EffectPage from './Page/EffectPage/Index'
-import ThreePage from './Page/ThreePage/Index'
+import ThreePage from './Page/ThreePage/index'
 //Style
 import './index.css';
 import ResponsiveDrawer from './Components/ResponsiveDrawer';
