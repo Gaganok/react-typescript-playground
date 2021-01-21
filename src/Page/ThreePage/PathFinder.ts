@@ -71,11 +71,11 @@ function getBestPathIndex(open: Array<Cell>): Cell{
 
 
 function getDistanceFromStart(start: Cell, cell: Cell){
-    cell.distanceFrom = Math.abs(start.cord.x - cell.cord.x) + Math.abs(start.cord.z - cell.cord.z)
+    cell.distanceFrom = Math.sqrt(Math.pow(start.cord.x - cell.cord.x, 2) + Math.pow(start.cord.z - cell.cord.z, 2))
 }
 
 function getDistanceToEnd(end: Cell, cell: Cell){
-    cell.distanceTo = Math.abs(end.cord.x - cell.cord.x) + Math.abs(end.cord.z - cell.cord.z)
+    cell.distanceTo = Math.sqrt(Math.pow(end.cord.x - cell.cord.x, 2) + Math.pow(end.cord.z - cell.cord.z, 2))
 }
 
 function equals(a: Cell, b: Cell): boolean {

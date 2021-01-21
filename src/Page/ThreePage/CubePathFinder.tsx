@@ -76,10 +76,12 @@ export default () => {
             pathTargetPoint.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
         }
 
+        console.time('Path Finder Function');
         pathToGo = PathFinder(
             {cord: {x: cubePathFinder.position.x, z: cubePathFinder.position.z}},  
             {cord: {x: pathTargetPoint.x, z: pathTargetPoint.z}}
         )!
+        console.timeEnd('Path Finder Function')
     }
 
     function getPlaneIntersaction(event: MouseEvent): THREE.Intersection[]{
